@@ -1,0 +1,156 @@
+/* CSS Simples - Preto e Branco */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #000000;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.upload-section {
+    border: 2px solid #000000;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.upload-area {
+    border: 2px dashed #000000;
+    padding: 40px;
+    cursor: pointer;
+}
+
+.upload-area:hover {
+    background-color: #f0f0f0;
+}
+
+.upload-text {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.file-input {
+    display: none;
+}
+
+.upload-btn {
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.upload-btn:hover {
+    background-color: #333333;
+}
+
+.file-info {
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px solid #000000;
+    background-color: #f9f9f9;
+}
+
+.analyze-btn {
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+}
+
+.analyze-btn:hover {
+    background-color: #333333;
+}
+
+.analyze-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.loading-section {
+    display: none;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #000000;
+    margin-bottom: 20px;
+}
+
+.results-section {
+    display: none;
+    margin-bottom: 20px;
+}
+
+.json-frame {
+    border: 2px solid #000000;
+    background-color: #f9f9f9;
+    padding: 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    white-space: pre-wrap;
+    overflow-x: auto;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.error-section {
+    display: none;
+    background-color: #f0f0f0;
+    border: 2px solid #000000;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.error-message {
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+/* Responsividade básica */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 20px;
+    }
+    
+    .upload-area {
+        padding: 20px;
+    }
+}

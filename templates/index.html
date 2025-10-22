@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisador de Notas Fiscais</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Analisador de Notas Fiscais</h1>
+        </header>
+
+        <main>
+            <!-- Upload Section -->
+            <section class="upload-section" id="uploadSection">
+                <h2>Upload de PDF</h2>
+                <div class="upload-area" id="uploadArea">
+                    <p class="upload-text">Clique para selecionar arquivo PDF</p>
+                    <input type="file" id="fileInput" class="file-input" accept=".pdf">
+                    <button type="button" id="uploadBtn" class="upload-btn">Selecionar Arquivo</button>
+                </div>
+                
+                <div class="file-info" id="fileInfo" style="display: none;">
+                </div>
+                
+                <button id="analyzeBtn" class="analyze-btn" disabled>Analisar</button>
+            </section>
+
+            <!-- Loading Section -->
+            <section class="loading-section" id="loadingSection" style="display: none;">
+                <p>Processando...</p>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section" id="resultsSection" style="display: none;">
+                <h2>Resultado JSON</h2>
+                <div class="json-frame" id="jsonFrame">
+                </div>
+            </section>
+
+            <!-- Error Section -->
+            <section class="error-section" id="errorSection" style="display: none;">
+                <h2>Erro</h2>
+                <p id="errorMessage"></p>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
