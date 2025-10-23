@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - nf-ai-network
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=development
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/nf_ai
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    volumes:
+      - ./uploads:/app/uploads
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - nf-ai-network
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=nf_ai
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database_schema.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5434:5432"
+    networks:
+      - nf-ai-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  postgres_data:
+
+networks:
+  nf-ai-network:
+    driver: bridge

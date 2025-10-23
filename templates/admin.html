@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Sistema de Gestão</title>
+    <link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Painel Administrativo</h1>
+        
+        <nav>
+            <button onclick="carregarTabela('pessoas')">Pessoas</button>
+            <button onclick="carregarTabela('movimentos')">Movimentações</button>
+            <button onclick="carregarTabela('classificacoes')">Classificações</button>
+        </nav>
+
+        <div class="content">
+            <div id="loading" style="display: none;">Carregando...</div>
+            <div id="error" style="display: none;"></div>
+            
+            <div id="table-container">
+                <p>Selecione uma opção no menu acima para visualizar os dados.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/admin.js"></script>
+</body>
+</html>

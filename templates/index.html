@@ -38,6 +38,25 @@
                 <h2>Resultado JSON</h2>
                 <div class="json-frame" id="jsonFrame">
                 </div>
+                
+                <!-- Save to Database Button -->
+                <div class="save-section" id="saveSection" style="display: none;">
+                    <button id="saveToDatabaseBtn" class="save-btn">Enviar para o Banco</button>
+                    <div class="save-status" id="saveStatus"></div>
+                </div>
+                
+                <!-- New Data Preview Section -->
+                <div class="new-data-preview" id="newDataPreview" style="display: none;">
+                    <h3>Dados que serão inseridos no banco:</h3>
+                    <div class="new-data-frame" id="newDataFrame">
+                    </div>
+                </div>
+                
+                <!-- Validation Messages Section -->
+                <div class="validation-messages" id="validationMessages" style="display: none;">
+                    <h3>Dados já existentes no banco:</h3>
+                    <div id="validationContent"></div>
+                </div>
             </section>
 
             <!-- Error Section -->

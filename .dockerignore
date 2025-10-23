@@ -1,0 +1,75 @@
+# Arquivos e diretórios do Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Arquivos de ambiente e configuração
+.env
+.env.*
+.venv
+venv/
+ENV/
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Arquivos de log
+*.log
+logs/
+
+# Arquivos temporários
+tmp/
+temp/
+
+# Arquivos de teste
+test/
+tests/
+coverage/
+.coverage
+.pytest_cache/
+htmlcov/
+
+# Arquivos do Git
+.git/
+.gitignore
+.gitattributes
+
+# Arquivos do Docker
+.docker/
+docker-compose*.yml
+Dockerfile*
+.dockerignore
+
+# Diretório de uploads (será montado como volume)
+uploads/
+
+# Arquivos de documentação
+docs/
+*.md
+LICENSE
