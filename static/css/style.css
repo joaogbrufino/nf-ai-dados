@@ -23,11 +23,30 @@ header {
     margin-bottom: 30px;
     border-bottom: 2px solid #000000;
     padding-bottom: 20px;
+    position: relative;
 }
 
 h1 {
     font-size: 24px;
     font-weight: bold;
+}
+
+.admin-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #000000;
+    padding: 5px 10px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.admin-btn:hover {
+    background-color: #000000;
+    color: #ffffff;
 }
 
 .upload-section {
