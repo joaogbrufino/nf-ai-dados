@@ -21,6 +21,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copiar arquivos da aplicação
 COPY app.py .
 COPY agente_ia.py .
+COPY agent3.py .
 COPY database.py .
 COPY database_schema.sql .
 COPY templates ./templates

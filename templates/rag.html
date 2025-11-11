@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busca Inteligente (RAG)</title>
+    <link rel="stylesheet" href="/static/css/admin.css">
+    <style>
+        .rag-container { max-width: 900px; margin: 20px auto; background: #fff; padding: 20px; border: 1px solid #ddd; border-radius: 6px; }
+        .rag-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+        .rag-header h2 { flex: 1; text-align: center; }
+        .rag-controls { display: flex; gap: 12px; align-items: center; }
+        .rag-controls select, .rag-controls input, .rag-controls textarea { padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        .rag-controls textarea { width: 100%; min-height: 90px; }
+        .rag-actions { text-align: right; margin-top: 12px; }
+        .rag-actions button { padding: 8px 16px; }
+        .rag-result { margin-top: 20px; background: #fafafa; border: 1px solid #eee; padding: 16px; border-radius: 6px; }
+        .rag-context { margin-top: 12px; font-size: 14px; color: #555; }
+        .rag-error { display:none; margin-top: 12px; padding:10px; background:#ffebee; color:#b71c1c; border:1px solid #ffcdd2; border-radius:4px; }
+    </style>
+    <script src="/static/js/rag.js" defer></script>
+    <script src="/static/js/admin.js" defer></script>
+</head>
+<body>
+    <div class="rag-container">
+        <div class="rag-header">
+            <h2>Busca Inteligente (RAG)</h2>
+            <div>
+                <a href="/admin">Admin</a>
+            </div>
+        </div>
+        <!-- A busca usa embeddings automaticamente com fallback para RAG simples -->
+        <div class="rag-controls" style="margin-top:8px; flex-direction:column;">
+            <label for="rag-pergunta" style="align-self:flex-start;">Pergunta sobre o Banco de Dados:</label>
+            <textarea id="rag-pergunta" placeholder="Ex.: Quais fornecedores tiveram maiores despesas em outubro?"></textarea>
+            <small style="color:#666; margin-top:6px;">Digite a pergunta e pressione Ctrl+Enter para buscar.</small>
+            <div id="rag-suggestions" style="display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;"></div>
+        </div>
+        <div class="rag-actions">
+            <button id="rag-buscar">Buscar</button>
+            <button id="rag-clear" style="margin-left:8px;">Limpar</button>
+        </div>
+        <div id="rag-error" class="rag-error"></div>
+        <div id="rag-result" class="rag-result" style="display:none;">
+            <div style="display:flex; align-items:center; justify-content:space-between;">
+                <h3>Resposta</h3>
+                <div>
+                    <button id="rag-copy">Copiar resposta</button>
+                    <span id="rag-latency" style="color:#666; margin-left:8px;"></span>
+                </div>
+            </div>
+            <div id="rag-answer" style="white-space:pre-wrap;"></div>
+            <div class="rag-context">
+                <strong>Contexto utilizado</strong>
+                <div id="rag-context" style="white-space:pre-wrap;"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

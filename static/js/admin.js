@@ -72,15 +72,17 @@ function renderizarTabela(dados, config) {
             html += '<td>' + item.id + '</td>';
             
             if (config.titulo === 'Pessoas') {
+                const isAtivo = (item.status || '').toUpperCase() === 'ATIVO';
+                const statusLabel = isAtivo ? 'Ativo' : 'Inativo';
                 html += '<td>' + item.nome + '</td>';
                 html += '<td>' + item.cpf_cnpj + '</td>';
                 html += '<td>' + item.tipo + '</td>';
-                html += '<td>' + item.endereco + '</td>';
-                html += '<td>' + item.status + '</td>';
+                html += '<td>' + (item.fantasia || '-') + '</td>';
+                html += '<td>' + statusLabel + '</td>';
                 html += '<td class="acoes">';
                 html += '<button class="btn-editar" onclick="editarPessoa(' + item.id + ')" title="Editar">✏️</button>';
-                html += '<button class="btn-inativar" onclick="inativarPessoa(' + item.id + ', \'' + item.status + '\')" title="' + (item.status === 'Ativo' ? 'Inativar' : 'Ativar') + '">';
-                html += item.status === 'Ativo' ? '🔓' : '🔒';
+                html += '<button class="btn-inativar" onclick="inativarPessoa(' + item.id + ', \'' + (item.status || '') + '\')" title="' + (isAtivo ? 'Inativar' : 'Ativar') + '">';
+                html += isAtivo ? '🔓' : '🔒';
                 html += '</button>';
                 html += '</td>';
             } else if (config.titulo === 'Movimentações') {
@@ -149,8 +151,9 @@ function editarPessoa(id) {
 }
 
 function inativarPessoa(id, statusAtual) {
-    const novoStatus = statusAtual === 'Ativo' ? 'Inativo' : 'Ativo';
-    const acao = novoStatus === 'Ativo' ? 'ativar' : 'inativar';
+    const atualUpper = (statusAtual || '').toUpperCase();
+    const novoUpper = atualUpper === 'ATIVO' ? 'INATIVO' : 'ATIVO';
+    const acao = novoUpper === 'ATIVO' ? 'ativar' : 'inativar';
     
     if (confirm(`Tem certeza que deseja ${acao} este registro?`)) {
         fetch(`/admin/api/pessoas/${id}/status`, {
@@ -158,7 +161,7 @@ function inativarPessoa(id, statusAtual) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ status: novoStatus })
+            body: JSON.stringify({ status: novoUpper })
         })
         .then(response => response.json())
         .then(data => {
