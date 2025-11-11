@@ -5,6 +5,7 @@ import PyPDF2
 import json
 import os
 import time
+import logging
 from io import BytesIO
 from datetime import datetime
 from dotenv import load_dotenv
@@ -18,9 +19,28 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app)
 
+# Configurar logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.StreamHandler(),  # Para exibir no terminal
+        logging.FileHandler('app.log')  # Para salvar em arquivo
+    ]
+)
+logger = logging.getLogger(__name__)
+
 # Configurações do banco de dados PostgreSQL
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'postgresql://postgres:postgres@localhost:5432/nf_ai_dados')
+db_url = os.getenv('DATABASE_URL', 'postgresql+psycopg://postgres:postgres@localhost:5432/nf_ai_dados')
+# Garantir uso do driver psycopg (psycopg3) mesmo se a URL vier sem o "+psycopg"
+if db_url.startswith('postgresql://') and '+psycopg' not in db_url:
+    db_url = db_url.replace('postgresql://', 'postgresql+psycopg://')
+app.config['SQLALCHEMY_DATABASE_URI'] = db_url
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
+    'pool_pre_ping': True,
+    'pool_recycle': 300
+}
 
 # Configurar Gemini AI
 GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
@@ -639,7 +659,77 @@ def admin_api_pessoas():
             })
         return jsonify(dados)
     except Exception as e:
-        return jsonify({"erro": f"Erro ao buscar pessoas: {str(e)}"}), 500
+        # Log detalhado no terminal/arquivo sem expor detalhes ao usuário
+        logger.exception("Erro ao buscar pessoas na rota /admin/api/pessoas")
+        return jsonify({"erro": "Não foi possível carregar. Tente novamente."}), 500
+
+@app.route('/admin/api/pessoas/<int:id>')
+def admin_api_pessoa_por_id(id):
+    """API para obter dados de uma pessoa específica"""
+    try:
+        pessoa = Pessoas.query.get(id)
+        if not pessoa:
+            return jsonify({"success": False, "message": "Pessoa não encontrada"}), 404
+        
+        dados = {
+            'id': pessoa.idPessoas,
+            'razaosocial': pessoa.razaosocial,
+            'documento': pessoa.documento,
+            'tipo': pessoa.tipo,
+            'fantasia': pessoa.fantasia or '',
+            'status': pessoa.status
+        }
+        return jsonify({"success": True, "pessoa": dados})
+    except Exception as e:
+        return jsonify({"success": False, "message": f"Erro ao buscar pessoa: {str(e)}"}), 500
+
+@app.route('/admin/api/pessoas/<int:id>', methods=['PUT'])
+def admin_api_editar_pessoa(id):
+    """API para editar dados de uma pessoa"""
+    try:
+        pessoa = Pessoas.query.get(id)
+        if not pessoa:
+            return jsonify({"success": False, "message": "Pessoa não encontrada"}), 404
+        
+        dados = request.get_json()
+        
+        # Atualizar campos
+        if 'razaosocial' in dados:
+            pessoa.razaosocial = dados['razaosocial']
+        if 'documento' in dados:
+            pessoa.documento = dados['documento']
+        if 'tipo' in dados:
+            pessoa.tipo = dados['tipo']
+        if 'fantasia' in dados:
+            pessoa.fantasia = dados['fantasia']
+        
+        db.session.commit()
+        return jsonify({"success": True, "message": "Pessoa atualizada com sucesso"})
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"success": False, "message": f"Erro ao atualizar pessoa: {str(e)}"}), 500
+
+@app.route('/admin/api/pessoas/<int:id>/status', methods=['PUT'])
+def admin_api_alterar_status_pessoa(id):
+    """API para alterar status de uma pessoa (ativar/inativar)"""
+    try:
+        pessoa = Pessoas.query.get(id)
+        if not pessoa:
+            return jsonify({"success": False, "message": "Pessoa não encontrada"}), 404
+        
+        dados = request.get_json()
+        novo_status = dados.get('status')
+        
+        if novo_status not in ['Ativo', 'Inativo']:
+            return jsonify({"success": False, "message": "Status inválido"}), 400
+        
+        pessoa.status = novo_status
+        db.session.commit()
+        
+        return jsonify({"success": True, "message": f"Status alterado para {novo_status}"})
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"success": False, "message": f"Erro ao alterar status: {str(e)}"}), 500
 
 @app.route('/admin/api/movimentos')
 def admin_api_movimentos():

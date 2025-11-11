@@ -3,7 +3,7 @@ const tabelasConfig = {
     pessoas: {
         titulo: 'Pessoas',
         endpoint: '/admin/api/pessoas',
-        colunas: ['ID', 'Nome', 'CPF/CNPJ', 'Tipo', 'Fantasia', 'Status']
+        colunas: ['ID', 'Nome', 'CPF/CNPJ', 'Tipo', 'Fantasia', 'Status', 'Ações']
     },
     movimentos: {
         titulo: 'Movimentações',
@@ -26,18 +26,24 @@ function carregarTabela(tipo) {
     esconderErro();
 
     fetch(config.endpoint)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Falha ao carregar (' + response.status + ')');
+            }
+            return response.json();
+        })
         .then(data => {
             esconderLoading();
-            if (data.erro) {
-                mostrarErro(data.erro);
+            if (data && data.erro) {
+                mostrarErro('Não foi possível carregar. Tente novamente.');
             } else {
                 renderizarTabela(data, config);
             }
         })
         .catch(error => {
             esconderLoading();
-            mostrarErro('Erro ao carregar dados: ' + error.message);
+            console.error('Erro ao carregar dados:', error);
+            mostrarErro('Não foi possível carregar. Tente novamente.');
         });
 }
 
@@ -71,6 +77,12 @@ function renderizarTabela(dados, config) {
                 html += '<td>' + item.tipo + '</td>';
                 html += '<td>' + item.endereco + '</td>';
                 html += '<td>' + item.status + '</td>';
+                html += '<td class="acoes">';
+                html += '<button class="btn-editar" onclick="editarPessoa(' + item.id + ')" title="Editar">✏️</button>';
+                html += '<button class="btn-inativar" onclick="inativarPessoa(' + item.id + ', \'' + item.status + '\')" title="' + (item.status === 'Ativo' ? 'Inativar' : 'Ativar') + '">';
+                html += item.status === 'Ativo' ? '🔓' : '🔒';
+                html += '</button>';
+                html += '</td>';
             } else if (config.titulo === 'Movimentações') {
                 html += '<td>' + item.pessoa_nome + '</td>';
                 html += '<td>' + item.classificacao_nome + '</td>';
@@ -116,4 +128,128 @@ function esconderErro() {
 
 function formatarMoeda(valor) {
     return parseFloat(valor).toFixed(2).replace('.', ',');
+}
+
+// Funções para edição e inativação
+function editarPessoa(id) {
+    // Buscar dados da pessoa
+    fetch(`/admin/api/pessoas/${id}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                mostrarModalEdicao(data.pessoa);
+            } else {
+                mostrarErro('Erro ao carregar dados da pessoa');
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            mostrarErro('Erro ao carregar dados da pessoa');
+        });
+}
+
+function inativarPessoa(id, statusAtual) {
+    const novoStatus = statusAtual === 'Ativo' ? 'Inativo' : 'Ativo';
+    const acao = novoStatus === 'Ativo' ? 'ativar' : 'inativar';
+    
+    if (confirm(`Tem certeza que deseja ${acao} este registro?`)) {
+        fetch(`/admin/api/pessoas/${id}/status`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ status: novoStatus })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                carregarTabela('pessoas'); // Recarregar tabela
+            } else {
+                mostrarErro('Erro ao alterar status da pessoa');
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            mostrarErro('Erro ao alterar status da pessoa');
+        });
+    }
+}
+
+function mostrarModalEdicao(pessoa) {
+    // Criar modal de edição
+    const modal = document.createElement('div');
+    modal.className = 'modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal()">&times;</span>
+            <h2>Editar Pessoa</h2>
+            <form id="form-edicao">
+                <div class="form-group">
+                    <label for="razaosocial">Razão Social:</label>
+                    <input type="text" id="razaosocial" name="razaosocial" value="${pessoa.razaosocial}" required>
+                </div>
+                <div class="form-group">
+                    <label for="documento">CPF/CNPJ:</label>
+                    <input type="text" id="documento" name="documento" value="${pessoa.documento}" required>
+                </div>
+                <div class="form-group">
+                    <label for="tipo">Tipo (Cliente/Fornecedor):</label>
+                    <select id="tipo" name="tipo" required>
+                        <option value="CLIENTE" ${pessoa.tipo === 'CLIENTE' ? 'selected' : ''}>Cliente</option>
+                        <option value="FORNECEDOR" ${pessoa.tipo === 'FORNECEDOR' ? 'selected' : ''}>Fornecedor</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="fantasia">Fantasia:</label>
+                    <input type="text" id="fantasia" name="fantasia" value="${pessoa.fantasia || ''}">
+                </div>
+                <div class="form-actions">
+                    <button type="button" onclick="fecharModal()">Cancelar</button>
+                    <button type="submit">Salvar</button>
+                </div>
+            </form>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Adicionar evento de submit
+    document.getElementById('form-edicao').addEventListener('submit', function(e) {
+        e.preventDefault();
+        salvarEdicao(pessoa.id);
+    });
+}
+
+function salvarEdicao(id) {
+    const form = document.getElementById('form-edicao');
+    const formData = new FormData(form);
+    const dados = Object.fromEntries(formData);
+    
+    fetch(`/admin/api/pessoas/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dados)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            fecharModal();
+            carregarTabela('pessoas'); // Recarregar tabela
+        } else {
+            mostrarErro('Erro ao salvar alterações');
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        mostrarErro('Erro ao salvar alterações');
+    });
+}
+
+function fecharModal() {
+    const modal = document.querySelector('.modal');
+    if (modal) {
+        modal.remove();
+    }
 }

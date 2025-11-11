@@ -99,3 +99,118 @@ tr:nth-child(even) {
         font-size: 14px;
     }
 }
+
+/* Estilos para botões de ação */
+.acoes {
+    text-align: center;
+    white-space: nowrap;
+}
+
+.btn-editar, .btn-inativar {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 2px;
+    padding: 4px;
+    border-radius: 3px;
+}
+
+.btn-editar:hover {
+    background-color: #e3f2fd;
+}
+
+.btn-inativar:hover {
+    background-color: #fff3e0;
+}
+
+/* Modal */
+.modal {
+    display: block;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.form-actions {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.form-actions button {
+    padding: 8px 16px;
+    margin-left: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.form-actions button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.form-actions button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.form-actions button[type="button"] {
+    background-color: #6c757d;
+    color: white;
+    border-color: #6c757d;
+}
+
+.form-actions button[type="button"]:hover {
+    background-color: #545b62;
+}
