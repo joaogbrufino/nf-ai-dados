@@ -3,58 +3,430 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Busca Inteligente (RAG)</title>
+    <title>Busca Inteligente (RAG) - Sistema de Gestão</title>
     <link rel="stylesheet" href="/static/css/admin.css">
     <style>
-        .rag-container { max-width: 900px; margin: 20px auto; background: #fff; padding: 20px; border: 1px solid #ddd; border-radius: 6px; }
-        .rag-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
-        .rag-header h2 { flex: 1; text-align: center; }
-        .rag-controls { display: flex; gap: 12px; align-items: center; }
-        .rag-controls select, .rag-controls input, .rag-controls textarea { padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
-        .rag-controls textarea { width: 100%; min-height: 90px; }
-        .rag-actions { text-align: right; margin-top: 12px; }
-        .rag-actions button { padding: 8px 16px; }
-        .rag-result { margin-top: 20px; background: #fafafa; border: 1px solid #eee; padding: 16px; border-radius: 6px; }
-        .rag-context { margin-top: 12px; font-size: 14px; color: #555; }
-        .rag-error { display:none; margin-top: 12px; padding:10px; background:#ffebee; color:#b71c1c; border:1px solid #ffcdd2; border-radius:4px; }
+        .rag-header {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .rag-header h1 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        .rag-header p {
+            margin: 0 0 10px 0;
+            color: #666;
+        }
+        .rag-header nav {
+            margin: 0;
+        }
+        .rag-header nav a {
+            display: inline-block;
+            padding: 8px 16px;
+            margin-right: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+            color: #333;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .rag-header nav a:hover {
+            background: #f0f0f0;
+        }
+        
+        .info-section {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .info-section h3 {
+            margin-top: 0;
+            color: #333;
+            font-size: 16px;
+        }
+        .info-section p {
+            margin: 5px 0;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .query-section {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .query-section h2 {
+            margin-top: 0;
+            color: #333;
+            font-size: 18px;
+        }
+        .query-input {
+            width: 100%;
+            min-height: 100px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            resize: vertical;
+        }
+        .query-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .suggestions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+        }
+        .suggestion-chip {
+            padding: 6px 12px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .suggestion-chip:hover {
+            background: #e0e0e0;
+        }
+        
+        .method-selector {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .method-btn {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            background: #fff;
+            cursor: pointer;
+            text-align: center;
+        }
+        .method-btn:hover {
+            background: #f9f9f9;
+        }
+        .method-btn.active {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+        .method-btn h4 {
+            margin: 0 0 5px 0;
+            font-size: 14px;
+        }
+        .method-btn p {
+            margin: 0;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .btn-primary {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        .btn-primary:hover {
+            background: #5568d3;
+        }
+        .btn-secondary {
+            background: #fff;
+            color: #333;
+        }
+        .btn-secondary:hover {
+            background: #f0f0f0;
+        }
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .result-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .result-card.active {
+            display: block;
+        }
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .result-header h3 {
+            margin: 0;
+            color: #333;
+            font-size: 16px;
+        }
+        .result-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 12px;
+            color: #666;
+        }
+        .result-answer {
+            line-height: 1.6;
+            color: #333;
+            white-space: pre-wrap;
+            margin-bottom: 15px;
+        }
+        .result-context {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-top: 15px;
+        }
+        .result-context h4 {
+            margin-top: 0;
+            color: #333;
+            font-size: 14px;
+        }
+        .result-context pre {
+            white-space: pre-wrap;
+            font-size: 12px;
+            color: #555;
+            margin: 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .error-message {
+            background: #ffe6e6;
+            border: 1px solid #ffcccc;
+            color: #cc0000;
+            padding: 10px;
+            margin: 20px 0;
+            display: none;
+        }
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        .loading-spinner.active {
+            display: block;
+        }
     </style>
-    <script src="/static/js/rag.js" defer></script>
-    <script src="/static/js/admin.js" defer></script>
 </head>
 <body>
-    <div class="rag-container">
+    <div class="container">
+        <!-- Cabeçalho -->
         <div class="rag-header">
-            <h2>Busca Inteligente (RAG)</h2>
-            <div>
+            <h1>Busca Inteligente com RAG</h1>
+            <p>Consulte os dados do banco utilizando Inteligência Artificial</p>
+            <nav>
+                <a href="/">← Início</a>
                 <a href="/admin">Admin</a>
+            </nav>
+        </div>
+        
+        <!-- Informações sobre os métodos -->
+        <div class="info-section">
+            <h3>Métodos de Busca Disponíveis</h3>
+            <p><strong>RAG Simples:</strong> Busca por palavras-chave (rápido e preciso para termos específicos)</p>
+            <p><strong>RAG com Embeddings:</strong> Busca semântica avançada (entende contexto e sinônimos)</p>
+            <p><strong>RAG Híbrido (Agent3):</strong> Combina ambas abordagens com filtros inteligentes (recomendado)</p>
+        </div>
+        
+        <!-- Seção de Query -->
+        <div class="query-section">
+            <h2>Faça sua pergunta</h2>
+            <textarea id="query-input" class="query-input" 
+                placeholder="Ex: Quais foram as maiores despesas do mês atual?&#10;Ex: Mostre parcelas vencendo esta semana&#10;Ex: Qual fornecedor tem mais movimentos de MANUTENÇÃO E OPERAÇÃO?"></textarea>
+            
+            <div class="suggestions">
+                <div class="suggestion-chip" data-query="Quais despesas maiores do mês atual?">Maiores despesas do mês</div>
+                <div class="suggestion-chip" data-query="Parcelas vencendo nesta semana">Parcelas desta semana</div>
+                <div class="suggestion-chip" data-query="Movimentos da classificação MANUTENÇÃO E OPERAÇÃO">Movimentos de manutenção</div>
+                <div class="suggestion-chip" data-query="Resumo dos fornecedores com maior valor total">Top fornecedores</div>
+                <div class="suggestion-chip" data-query="Notas fiscais emitidas no último trimestre">NFs do trimestre</div>
             </div>
-        </div>
-        <!-- A busca usa embeddings automaticamente com fallback para RAG simples -->
-        <div class="rag-controls" style="margin-top:8px; flex-direction:column;">
-            <label for="rag-pergunta" style="align-self:flex-start;">Pergunta sobre o Banco de Dados:</label>
-            <textarea id="rag-pergunta" placeholder="Ex.: Quais fornecedores tiveram maiores despesas em outubro?"></textarea>
-            <small style="color:#666; margin-top:6px;">Digite a pergunta e pressione Ctrl+Enter para buscar.</small>
-            <div id="rag-suggestions" style="display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;"></div>
-        </div>
-        <div class="rag-actions">
-            <button id="rag-buscar">Buscar</button>
-            <button id="rag-clear" style="margin-left:8px;">Limpar</button>
-        </div>
-        <div id="rag-error" class="rag-error"></div>
-        <div id="rag-result" class="rag-result" style="display:none;">
-            <div style="display:flex; align-items:center; justify-content:space-between;">
-                <h3>Resposta</h3>
-                <div>
-                    <button id="rag-copy">Copiar resposta</button>
-                    <span id="rag-latency" style="color:#666; margin-left:8px;"></span>
+            
+            <h3 style="margin-top: 15px; margin-bottom: 10px; font-size: 16px;">Escolha o método de busca:</h3>
+            <div class="method-selector">
+                <div class="method-btn active" data-method="hibrido">
+                    <h4>Híbrido (Agent3)</h4>
+                    <p>Recomendado</p>
+                </div>
+                <div class="method-btn" data-method="simples">
+                    <h4>RAG Simples</h4>
+                    <p>Palavras-chave</p>
+                </div>
+                <div class="method-btn" data-method="embeddings">
+                    <h4>RAG Embeddings</h4>
+                    <p>Busca semântica</p>
                 </div>
             </div>
-            <div id="rag-answer" style="white-space:pre-wrap;"></div>
-            <div class="rag-context">
-                <strong>Contexto utilizado</strong>
-                <div id="rag-context" style="white-space:pre-wrap;"></div>
+            
+            <div class="action-buttons">
+                <button id="btn-search" class="btn btn-primary">Buscar Resposta</button>
+                <button id="btn-clear" class="btn btn-secondary">Limpar</button>
+            </div>
+        </div>
+        
+        <!-- Mensagem de Erro -->
+        <div id="error-message" class="error-message"></div>
+        
+        <!-- Loading -->
+        <div id="loading" class="loading-spinner">
+            <p>Processando sua pergunta...</p>
+        </div>
+        
+        <!-- Resultados -->
+        <div id="result-card" class="result-card">
+            <div class="result-header">
+                <h3 id="result-title">Resposta</h3>
+                <div class="result-meta">
+                    <span id="result-method">Método: -</span>
+                    <span id="result-time">Tempo: -</span>
+                    <span id="result-count">Registros: -</span>
+                    <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;" onclick="copyAnswer()">Copiar</button>
+                </div>
+            </div>
+            <div id="result-answer" class="result-answer"></div>
+            <div class="result-context">
+                <h4>Contexto Recuperado do Banco de Dados</h4>
+                <pre id="result-context"></pre>
             </div>
         </div>
     </div>
+    
+    <script>
+        let selectedMethod = 'hibrido';
+        
+        // Seleção de método
+        document.querySelectorAll('.method-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.method-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                selectedMethod = this.dataset.method;
+            });
+        });
+        
+        // Sugestões
+        document.querySelectorAll('.suggestion-chip').forEach(chip => {
+            chip.addEventListener('click', function() {
+                document.getElementById('query-input').value = this.dataset.query;
+            });
+        });
+        
+        // Botão buscar
+        document.getElementById('btn-search').addEventListener('click', executeSearch);
+        
+        // Ctrl+Enter para buscar
+        document.getElementById('query-input').addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'Enter') {
+                e.preventDefault();
+                executeSearch();
+            }
+        });
+        
+        // Botão limpar
+        document.getElementById('btn-clear').addEventListener('click', function() {
+            document.getElementById('query-input').value = '';
+            document.getElementById('error-message').style.display = 'none';
+            document.getElementById('result-card').classList.remove('active');
+        });
+        
+        function executeSearch() {
+            const query = document.getElementById('query-input').value.trim();
+            if (!query) {
+                showError('Por favor, digite uma pergunta.');
+                return;
+            }
+            
+            hideError();
+            showLoading();
+            
+            // Determinar endpoint
+            let endpoint = '/rag/query'; // híbrido (padrão)
+            if (selectedMethod === 'simples') endpoint = '/rag/query-simples';
+            if (selectedMethod === 'embeddings') endpoint = '/rag/query-embeddings';
+            
+            const startTime = performance.now();
+            
+            fetch(endpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ pergunta: query })
+            })
+            .then(response => response.json())
+            .then(data => {
+                hideLoading();
+                if (!data.sucesso) {
+                    showError(data.erro || 'Erro ao processar a busca.');
+                    return;
+                }
+                
+                const totalTime = Math.round(performance.now() - startTime);
+                showResults(data, totalTime);
+            })
+            .catch(error => {
+                hideLoading();
+                console.error('Erro:', error);
+                showError('Erro ao conectar com o servidor.');
+            });
+        }
+        
+        function showResults(data, totalTime) {
+            document.getElementById('result-method').textContent = `${data.metodo || 'RAG'}`;
+            document.getElementById('result-time').textContent = `${data.tempo_busca_ms || totalTime} ms`;
+            document.getElementById('result-count').textContent = `${data.registros_encontrados || data.contexto?.length || 0} registros`;
+            document.getElementById('result-answer').textContent = data.resposta || '(sem resposta)';
+            document.getElementById('result-context').textContent = data.contexto?.join('\n\n') || '(sem contexto)';
+            document.getElementById('result-card').classList.add('active');
+        }
+        
+        function showError(message) {
+            const errorEl = document.getElementById('error-message');
+            errorEl.textContent = message;
+            errorEl.style.display = 'block';
+        }
+        
+        function hideError() {
+            document.getElementById('error-message').style.display = 'none';
+        }
+        
+        function showLoading() {
+            document.getElementById('loading').classList.add('active');
+            document.getElementById('btn-search').disabled = true;
+        }
+        
+        function hideLoading() {
+            document.getElementById('loading').classList.remove('active');
+            document.getElementById('btn-search').disabled = false;
+        }
+        
+        function copyAnswer() {
+            const answer = document.getElementById('result-answer').textContent;
+            navigator.clipboard.writeText(answer).then(() => {
+                alert('✅ Resposta copiada!');
+            });
+        }
+        
+        // Focus no input ao carregar
+        document.getElementById('query-input').focus();
+    </script>
 </body>
 </html>
