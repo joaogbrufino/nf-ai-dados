@@ -985,6 +985,7 @@ def rag_page():
 
 @app.route('/rag/query', methods=['POST'])
 def rag_query():
+    """Rota principal RAG - usa Agent3 com estratégia híbrida"""
     try:
         data = request.get_json(force=True)
         pergunta = (data.get('pergunta') or '').strip()
@@ -1001,9 +1002,149 @@ def rag_query():
     try:
         agent = Agent3(model_name='gemini-2.5-flash')
         result = agent.run_query(pergunta)
+        result['metodo'] = 'Híbrido (Agent3)'
         return jsonify(result)
     except Exception as e:
         return jsonify({"sucesso": False, "erro": f"Falha no agente RAG: {str(e)}"}), 500
+
+@app.route('/rag/query-simples', methods=['POST'])
+def rag_query_simples():
+    """RAG Simples - busca por palavras-chave"""
+    try:
+        data = request.get_json(force=True)
+        pergunta = (data.get('pergunta') or '').strip()
+    except Exception:
+        return jsonify({"sucesso": False, "erro": "JSON inválido."}), 400
+
+    if not pergunta:
+        return jsonify({"sucesso": False, "erro": "Pergunta vazia."}), 400
+
+    try:
+        # Buscar dados do banco
+        filtros = _extract_filters_from_question(pergunta)
+        corpus = _query_db_by_filters(filtros, limit=100)
+        
+        # Se não encontrou nada, usar corpus geral
+        if not corpus:
+            corpus = _simple_corpus(limit=50, filtros=filtros)
+        
+        # Aplicar RAG simples (busca por palavras-chave)
+        import time
+        start_time = time.time()
+        resultados = _rag_simples(pergunta, corpus, top_k=8)
+        tempo_busca = round((time.time() - start_time) * 1000, 2)
+        
+        # Montar contexto
+        contexto_textos = [r["texto"] for r in resultados]
+        contexto_str = "\n\n".join(contexto_textos) if contexto_textos else "(sem dados)"
+        
+        # Gerar resposta com LLM
+        if GEMINI_API_KEY and contexto_textos:
+            prompt = f"""Você é um assistente financeiro. Analise os dados abaixo e responda a pergunta de forma clara e objetiva em português do Brasil.
+
+DADOS ENCONTRADOS:
+{contexto_str}
+
+PERGUNTA: {pergunta}
+
+Responda de forma estruturada, citando valores e datas quando relevante."""
+            
+            try:
+                content = types.Content(
+                    role="user",
+                    parts=[types.Part.from_text(prompt)]
+                )
+                response = genai_client.models.generate_content(
+                    model='gemini-2.5-flash',
+                    contents=[content]
+                )
+                resposta = response.candidates[0].content.parts[0].text.strip()
+            except Exception as e:
+                resposta = f"Erro ao gerar resposta com LLM: {str(e)}\n\nDados encontrados:\n" + contexto_str
+        else:
+            resposta = f"Encontrados {len(resultados)} registros:\n\n" + contexto_str
+        
+        return jsonify({
+            "sucesso": True,
+            "resposta": resposta,
+            "contexto": contexto_textos,
+            "metodo": "RAG Simples (Palavras-chave)",
+            "tempo_busca_ms": tempo_busca,
+            "registros_encontrados": len(resultados)
+        })
+    except Exception as e:
+        return jsonify({"sucesso": False, "erro": f"Erro no RAG simples: {str(e)}"}), 500
+
+@app.route('/rag/query-embeddings', methods=['POST'])
+def rag_query_embeddings():
+    """RAG com Embeddings - busca semântica"""
+    try:
+        data = request.get_json(force=True)
+        pergunta = (data.get('pergunta') or '').strip()
+    except Exception:
+        return jsonify({"sucesso": False, "erro": "JSON inválido."}), 400
+
+    if not pergunta:
+        return jsonify({"sucesso": False, "erro": "Pergunta vazia."}), 400
+
+    if not GEMINI_API_KEY:
+        return jsonify({"sucesso": False, "erro": "GEMINI_API_KEY não configurada."}), 500
+
+    try:
+        # Buscar dados do banco
+        filtros = _extract_filters_from_question(pergunta)
+        corpus = _query_db_by_filters(filtros, limit=100)
+        
+        # Se não encontrou nada, usar corpus geral
+        if not corpus:
+            corpus = _simple_corpus(limit=50, filtros=filtros)
+        
+        # Aplicar RAG com embeddings
+        import time
+        start_time = time.time()
+        resultados = _rag_embeddings(pergunta, corpus, top_k=8)
+        tempo_busca = round((time.time() - start_time) * 1000, 2)
+        
+        # Montar contexto
+        contexto_textos = [r["texto"] for r in resultados]
+        contexto_str = "\n\n".join(contexto_textos) if contexto_textos else "(sem dados)"
+        
+        # Gerar resposta com LLM
+        if contexto_textos:
+            prompt = f"""Você é um assistente financeiro avançado. Analise os dados abaixo (recuperados por busca semântica) e responda a pergunta de forma clara e objetiva em português do Brasil.
+
+DADOS ENCONTRADOS (por similaridade semântica):
+{contexto_str}
+
+PERGUNTA: {pergunta}
+
+Responda de forma estruturada, citando valores e datas quando relevante. Use os dados mais relevantes encontrados pela busca semântica."""
+            
+            try:
+                content = types.Content(
+                    role="user",
+                    parts=[types.Part.from_text(prompt)]
+                )
+                response = genai_client.models.generate_content(
+                    model='gemini-2.5-flash',
+                    contents=[content]
+                )
+                resposta = response.candidates[0].content.parts[0].text.strip()
+            except Exception as e:
+                resposta = f"Erro ao gerar resposta com LLM: {str(e)}\n\nDados encontrados:\n" + contexto_str
+        else:
+            resposta = "Nenhum dado relevante encontrado para a pergunta."
+        
+        return jsonify({
+            "sucesso": True,
+            "resposta": resposta,
+            "contexto": contexto_textos,
+            "metodo": "RAG com Embeddings (Busca Semântica)",
+            "tempo_busca_ms": tempo_busca,
+            "registros_encontrados": len(resultados)
+        })
+    except Exception as e:
+        return jsonify({"sucesso": False, "erro": f"Erro no RAG embeddings: {str(e)}"}), 500
 
 @app.route('/admin/api/pessoas')
 def admin_api_pessoas():

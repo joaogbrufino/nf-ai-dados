@@ -27,8 +27,13 @@ COPY database_schema.sql .
 COPY templates ./templates
 COPY static ./static
 
-# Criar diretório de uploads
-RUN mkdir uploads
+# Criar diretório de uploads com permissões
+RUN mkdir -p uploads && chmod 777 uploads
+
+# Expor informações sobre o sistema RAG
+LABEL description="Sistema de Processamento de Notas Fiscais com IA e RAG" \
+      version="2.0" \
+      features="upload-pdf,gemini-ai,rag-simples,rag-embeddings,agent3"
 
 # Expor porta
 EXPOSE 5000

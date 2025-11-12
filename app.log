@@ -8,3 +8,203 @@
 2025-11-04 13:45:53,141 - werkzeug - INFO -  * Restarting with stat
 2025-11-04 13:45:56,293 - werkzeug - WARNING -  * Debugger is active!
 2025-11-04 13:45:56,298 - werkzeug - INFO -  * Debugger PIN: 105-095-540
+2025-11-11 19:51:22,425 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.14:5000
+2025-11-11 19:51:22,426 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-11 19:51:22,443 - werkzeug - INFO -  * Restarting with stat
+2025-11-11 20:17:18,626 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.22.72.148:5000
+2025-11-11 20:17:18,627 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-11 20:17:18,627 - werkzeug - INFO -  * Restarting with stat
+2025-11-11 20:17:19,854 - werkzeug - WARNING -  * Debugger is active!
+2025-11-11 20:17:19,995 - werkzeug - INFO -  * Debugger PIN: 131-111-345
+2025-11-11 20:17:38,246 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:17:38] "GET / HTTP/1.1" 200 -
+2025-11-11 20:17:38,280 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:17:38] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-11-11 20:17:38,300 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:17:38] "GET /static/js/script.js HTTP/1.1" 200 -
+2025-11-11 20:17:38,435 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:17:38] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-11-11 20:28:18,410 - werkzeug - INFO -  * Detected change in '/root/Jenni/nf-ai-dados/app.py', reloading
+2025-11-11 20:28:18,656 - werkzeug - INFO -  * Restarting with stat
+2025-11-11 20:28:19,836 - werkzeug - WARNING -  * Debugger is active!
+2025-11-11 20:28:19,837 - werkzeug - INFO -  * Debugger PIN: 131-111-345
+2025-11-11 20:30:05,959 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:30:05] "GET /admin HTTP/1.1" 200 -
+2025-11-11 20:30:06,019 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:30:06] "GET /static/css/admin.css HTTP/1.1" 200 -
+2025-11-11 20:30:06,020 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:30:06] "GET /static/js/admin.js HTTP/1.1" 200 -
+2025-11-11 20:30:25,751 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:30:25] "GET /admin HTTP/1.1" 200 -
+2025-11-11 20:30:25,783 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:30:25] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:30:25,787 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:30:25] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+2025-11-11 20:30:27,998 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:30:27] "GET /admin/api/classificacoes HTTP/1.1" 200 -
+2025-11-11 20:30:30,783 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:30:30] "GET /admin/api/movimentos HTTP/1.1" 200 -
+2025-11-11 20:30:31,662 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:30:31] "GET /admin/api/pessoas HTTP/1.1" 200 -
+2025-11-11 20:33:17,271 - werkzeug - INFO -  * Detected change in '/root/Jenni/nf-ai-dados/test_rag.py', reloading
+2025-11-11 20:33:17,554 - werkzeug - INFO -  * Restarting with stat
+2025-11-11 20:33:18,710 - werkzeug - WARNING -  * Debugger is active!
+2025-11-11 20:33:18,711 - werkzeug - INFO -  * Debugger PIN: 131-111-345
+2025-11-11 20:34:07,318 - root - INFO - AFC is enabled with max remote calls: 10.
+2025-11-11 20:34:18,595 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:34:18] "POST /upload HTTP/1.1" 200 -
+2025-11-11 20:34:22,723 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:34:22] "POST /salvar-dados HTTP/1.1" 200 -
+2025-11-11 20:34:25,139 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:34:25] "GET /admin HTTP/1.1" 200 -
+2025-11-11 20:34:25,173 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:34:25] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:34:25,176 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:34:25] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+2025-11-11 20:34:26,317 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:34:26] "GET /admin/api/classificacoes HTTP/1.1" 200 -
+2025-11-11 20:34:27,113 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:34:27] "GET /admin/api/movimentos HTTP/1.1" 200 -
+2025-11-11 20:34:28,356 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:34:28] "GET /admin/api/pessoas HTTP/1.1" 200 -
+2025-11-11 20:34:31,278 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:34:31] "GET /admin/api/pessoas/1 HTTP/1.1" 200 -
+2025-11-11 20:34:41,156 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:34:41] "GET /admin HTTP/1.1" 200 -
+2025-11-11 20:34:41,187 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:34:41] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:34:41,191 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:34:41] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+2025-11-11 20:34:41,976 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:34:41] "GET /admin/api/classificacoes HTTP/1.1" 200 -
+2025-11-11 20:34:43,467 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:34:43] "GET /admin/api/movimentos HTTP/1.1" 200 -
+2025-11-11 20:34:45,159 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:34:45] "GET /admin/api/pessoas HTTP/1.1" 200 -
+2025-11-11 20:34:50,837 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:34:50] "GET /admin HTTP/1.1" 200 -
+2025-11-11 20:34:50,867 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:34:50] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:34:50,871 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:34:50] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+2025-11-11 20:35:02,494 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:35:02] "GET /admin HTTP/1.1" 200 -
+2025-11-11 20:35:02,525 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:35:02] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:35:02,532 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:35:02] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+2025-11-11 20:35:22,805 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:35:22] "[33mGET /rag.html HTTP/1.1[0m" 404 -
+2025-11-11 20:35:32,794 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:35:32] "GET /rag HTTP/1.1" 200 -
+2025-11-11 20:35:32,825 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:35:32] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:35:53,877 - root - INFO - AFC is enabled with max remote calls: 10.
+2025-11-11 20:36:01,724 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:36:01] "POST /rag/query HTTP/1.1" 200 -
+2025-11-11 20:41:40,803 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:41:40] "GET /admin HTTP/1.1" 200 -
+2025-11-11 20:41:40,956 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:41:40] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:41:40,959 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:41:40] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+2025-11-11 20:42:01,725 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:42:01] "GET /rag HTTP/1.1" 200 -
+2025-11-11 20:42:01,759 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:42:01] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:42:10,054 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:42:10] "GET / HTTP/1.1" 200 -
+2025-11-11 20:42:10,083 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:42:10] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-11-11 20:42:10,088 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:42:10] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2025-11-11 20:42:11,237 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:42:11] "GET /admin HTTP/1.1" 200 -
+2025-11-11 20:42:11,268 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:42:11] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:42:11,270 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:42:11] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+2025-11-11 20:43:01,309 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:43:01] "GET /admin HTTP/1.1" 200 -
+2025-11-11 20:43:01,344 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:43:01] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:43:01,346 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:43:01] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+2025-11-11 20:43:04,377 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:43:04] "GET /rag HTTP/1.1" 200 -
+2025-11-11 20:43:04,406 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:43:04] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:43:39,675 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:43:39] "GET /admin HTTP/1.1" 200 -
+2025-11-11 20:43:39,706 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:43:39] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:43:39,709 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:43:39] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+2025-11-11 20:44:16,417 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:44:16] "GET /admin HTTP/1.1" 200 -
+2025-11-11 20:44:16,447 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:44:16] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:44:16,457 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:44:16] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+2025-11-11 20:44:28,107 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:44:28] "GET /admin HTTP/1.1" 200 -
+2025-11-11 20:44:28,138 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:44:28] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:44:28,143 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:44:28] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+2025-11-11 20:45:26,749 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:45:26] "GET /admin HTTP/1.1" 200 -
+2025-11-11 20:45:26,782 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:45:26] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:45:26,785 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:45:26] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+2025-11-11 20:45:43,167 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:45:43] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:46:01,174 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:46:01] "GET /admin HTTP/1.1" 200 -
+2025-11-11 20:46:03,266 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:46:03] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:46:03,269 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:46:03] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+2025-11-11 20:46:19,563 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:46:19] "GET /admin HTTP/1.1" 200 -
+2025-11-11 20:46:19,604 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:46:19] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:46:19,612 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:46:19] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+2025-11-11 20:46:53,560 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:46:53] "GET /admin HTTP/1.1" 200 -
+2025-11-11 20:46:53,604 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:46:53] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:46:53,606 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:46:53] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+2025-11-11 20:47:07,046 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:47:07] "GET /admin HTTP/1.1" 200 -
+2025-11-11 20:47:07,107 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:47:07] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:47:07,109 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:47:07] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+2025-11-11 20:47:49,418 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:47:49] "GET /admin HTTP/1.1" 200 -
+2025-11-11 20:47:49,469 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:47:49] "GET /static/css/admin.css HTTP/1.1" 200 -
+2025-11-11 20:47:49,475 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:47:49] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+2025-11-11 20:47:52,642 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:47:52] "GET /rag HTTP/1.1" 200 -
+2025-11-11 20:47:52,695 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:47:52] "GET /static/css/admin.css HTTP/1.1" 200 -
+2025-11-11 20:48:06,343 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:48:06] "GET / HTTP/1.1" 200 -
+2025-11-11 20:48:06,379 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:48:06] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-11-11 20:48:06,381 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:48:06] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2025-11-11 20:48:26,800 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:48:26] "GET / HTTP/1.1" 200 -
+2025-11-11 20:48:26,838 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:48:26] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-11-11 20:48:26,841 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:48:26] "GET /static/js/script.js HTTP/1.1" 200 -
+2025-11-11 20:48:26,899 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:48:26] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-11-11 20:48:31,201 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:48:31] "GET /admin HTTP/1.1" 200 -
+2025-11-11 20:48:31,224 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:48:31] "GET /static/css/admin.css HTTP/1.1" 200 -
+2025-11-11 20:48:31,227 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:48:31] "GET /static/js/admin.js HTTP/1.1" 200 -
+2025-11-11 20:48:33,851 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:48:33] "GET /rag HTTP/1.1" 200 -
+2025-11-11 20:48:33,874 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:48:33] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:48:51,917 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:48:51] "GET / HTTP/1.1" 200 -
+2025-11-11 20:48:51,937 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:48:51] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-11-11 20:48:51,942 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:48:51] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2025-11-11 20:52:39,807 - root - INFO - AFC is enabled with max remote calls: 10.
+2025-11-11 20:52:52,433 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:52:52] "POST /upload HTTP/1.1" 200 -
+2025-11-11 20:52:58,220 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:52:58] "GET /admin HTTP/1.1" 200 -
+2025-11-11 20:52:58,253 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:52:58] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:52:58,256 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:52:58] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+2025-11-11 20:53:00,469 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:53:00] "GET / HTTP/1.1" 200 -
+2025-11-11 20:53:00,500 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:53:00] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-11-11 20:53:00,502 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:53:00] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2025-11-11 20:53:01,446 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:53:01] "GET /admin HTTP/1.1" 200 -
+2025-11-11 20:53:01,474 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:53:01] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:53:01,475 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:53:01] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+2025-11-11 20:53:03,497 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:53:03] "GET /rag HTTP/1.1" 200 -
+2025-11-11 20:53:03,515 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:53:03] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:53:58,430 - root - INFO - AFC is enabled with max remote calls: 10.
+2025-11-11 20:54:10,394 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:54:10] "POST /rag/query HTTP/1.1" 200 -
+2025-11-11 20:54:48,898 - root - INFO - AFC is enabled with max remote calls: 10.
+2025-11-11 20:54:56,127 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:54:56] "POST /rag/query HTTP/1.1" 200 -
+2025-11-11 20:55:19,854 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:55:19] "GET / HTTP/1.1" 200 -
+2025-11-11 20:55:19,878 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:55:19] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-11-11 20:55:19,883 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:55:19] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2025-11-11 20:56:25,955 - root - INFO - AFC is enabled with max remote calls: 10.
+2025-11-11 20:56:40,711 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:56:40] "POST /upload HTTP/1.1" 200 -
+2025-11-11 20:56:43,712 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:56:43] "GET /admin HTTP/1.1" 200 -
+2025-11-11 20:56:43,744 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:56:43] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:56:43,746 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:56:43] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+2025-11-11 20:56:45,666 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:56:45] "GET / HTTP/1.1" 200 -
+2025-11-11 20:56:45,692 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:56:45] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2025-11-11 20:56:45,693 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:56:45] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-11-11 20:56:46,560 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:56:46] "GET /admin HTTP/1.1" 200 -
+2025-11-11 20:56:46,585 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:56:46] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:56:46,588 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:56:46] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+2025-11-11 20:56:48,624 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:56:48] "GET /rag HTTP/1.1" 200 -
+2025-11-11 20:56:48,647 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:56:48] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:57:10,373 - root - INFO - AFC is enabled with max remote calls: 10.
+2025-11-11 20:57:15,428 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:57:15] "POST /rag/query HTTP/1.1" 200 -
+2025-11-11 20:57:31,284 - root - INFO - AFC is enabled with max remote calls: 10.
+2025-11-11 20:57:38,325 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:57:38] "POST /rag/query HTTP/1.1" 200 -
+2025-11-11 20:58:02,769 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:58:02] "GET / HTTP/1.1" 200 -
+2025-11-11 20:58:02,797 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:58:02] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-11-11 20:58:02,799 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:58:02] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2025-11-11 20:58:38,489 - root - INFO - AFC is enabled with max remote calls: 10.
+2025-11-11 20:58:51,017 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:58:51] "POST /upload HTTP/1.1" 200 -
+2025-11-11 20:58:53,663 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:58:53] "GET /admin HTTP/1.1" 200 -
+2025-11-11 20:58:53,699 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:58:53] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:58:53,701 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:58:53] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+2025-11-11 20:58:54,462 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:58:54] "GET /rag HTTP/1.1" 200 -
+2025-11-11 20:58:54,492 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:58:54] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:58:56,592 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:58:56] "GET / HTTP/1.1" 200 -
+2025-11-11 20:58:56,614 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:58:56] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-11-11 20:58:56,623 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:58:56] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2025-11-11 20:58:57,607 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:58:57] "GET /admin HTTP/1.1" 200 -
+2025-11-11 20:58:57,634 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:58:57] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:58:57,635 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:58:57] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+2025-11-11 20:59:00,240 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:59:00] "GET /rag HTTP/1.1" 200 -
+2025-11-11 20:59:00,263 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:59:00] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 20:59:11,369 - root - INFO - AFC is enabled with max remote calls: 10.
+2025-11-11 20:59:23,011 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:59:23] "POST /rag/query HTTP/1.1" 200 -
+2025-11-11 20:59:31,295 - root - INFO - AFC is enabled with max remote calls: 10.
+2025-11-11 20:59:42,532 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:59:42] "POST /rag/query HTTP/1.1" 200 -
+2025-11-11 20:59:53,521 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:59:53] "GET / HTTP/1.1" 200 -
+2025-11-11 20:59:53,555 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:59:53] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2025-11-11 20:59:53,556 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 20:59:53] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-11-11 21:00:12,089 - root - INFO - AFC is enabled with max remote calls: 10.
+2025-11-11 21:00:32,342 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 21:00:32] "POST /upload HTTP/1.1" 200 -
+2025-11-11 21:00:34,043 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 21:00:34] "GET /admin HTTP/1.1" 200 -
+2025-11-11 21:00:34,077 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 21:00:34] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 21:00:34,078 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 21:00:34] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+2025-11-11 21:00:36,811 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 21:00:36] "GET / HTTP/1.1" 200 -
+2025-11-11 21:00:36,844 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 21:00:36] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-11-11 21:00:36,846 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 21:00:36] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2025-11-11 21:00:38,068 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 21:00:38] "GET /admin HTTP/1.1" 200 -
+2025-11-11 21:00:38,099 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 21:00:38] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 21:00:38,101 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 21:00:38] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+2025-11-11 21:00:38,862 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 21:00:38] "GET /rag HTTP/1.1" 200 -
+2025-11-11 21:00:38,881 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 21:00:38] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2025-11-11 21:00:47,383 - root - INFO - AFC is enabled with max remote calls: 10.
+2025-11-11 21:00:52,753 - werkzeug - INFO - 172.22.64.1 - - [11/Nov/2025 21:00:52] "POST /rag/query HTTP/1.1" 200 -

@@ -109,32 +109,39 @@ def init_db(app):
     """Inicializa o banco de dados"""
     db.init_app(app)
     
-    with app.app_context():
-        # Criar todas as tabelas
-        db.create_all()
-        
-        # Inserir classificações padrão se não existirem
-        classificacoes_padrao = [
-            ('DESPESA', 'INSUMOS AGRÍCOLAS'),
-            ('DESPESA', 'MANUTENÇÃO E OPERAÇÃO'),
-            ('DESPESA', 'RECURSOS HUMANOS'),
-            ('DESPESA', 'SERVIÇOS OPERACIONAIS'),
-            ('DESPESA', 'INFRAESTRUTURA E UTILIDADES'),
-            ('DESPESA', 'ADMINISTRATIVAS'),
-            ('DESPESA', 'SEGUROS E PROTEÇÃO'),
-            ('DESPESA', 'IMPOSTOS E TAXAS'),
-            ('DESPESA', 'INVESTIMENTOS'),
-            ('DESPESA', 'OUTROS'),
-            ('RECEITA', 'VENDAS'),
-            ('RECEITA', 'SERVIÇOS'),
-            ('RECEITA', 'OUTRAS RECEITAS')
-        ]
-        
-        for tipo, descricao in classificacoes_padrao:
-            classificacao_existente = Classificacao.query.filter_by(tipo=tipo, descricao=descricao).first()
-            if not classificacao_existente:
-                nova_classificacao = Classificacao(tipo=tipo, descricao=descricao, status='ATIVO')
-                db.session.add(nova_classificacao)
-        
-        db.session.commit()
-        print("Banco de dados inicializado com sucesso!")
+    try:
+        with app.app_context():
+            # Criar todas as tabelas
+            db.create_all()
+            
+            # Inserir classificações padrão se não existirem
+            classificacoes_padrao = [
+                ('DESPESA', 'INSUMOS AGRÍCOLAS'),
+                ('DESPESA', 'MANUTENÇÃO E OPERAÇÃO'),
+                ('DESPESA', 'RECURSOS HUMANOS'),
+                ('DESPESA', 'SERVIÇOS OPERACIONAIS'),
+                ('DESPESA', 'INFRAESTRUTURA E UTILIDADES'),
+                ('DESPESA', 'ADMINISTRATIVAS'),
+                ('DESPESA', 'SEGUROS E PROTEÇÃO'),
+                ('DESPESA', 'IMPOSTOS E TAXAS'),
+                ('DESPESA', 'INVESTIMENTOS'),
+                ('DESPESA', 'OUTROS'),
+                ('RECEITA', 'VENDAS'),
+                ('RECEITA', 'SERVIÇOS'),
+                ('RECEITA', 'OUTRAS RECEITAS')
+            ]
+            
+            for tipo, descricao in classificacoes_padrao:
+                classificacao_existente = Classificacao.query.filter_by(tipo=tipo, descricao=descricao).first()
+                if not classificacao_existente:
+                    nova_classificacao = Classificacao(tipo=tipo, descricao=descricao, status='ATIVO')
+                    db.session.add(nova_classificacao)
+            
+            db.session.commit()
+            print("✅ Banco de dados inicializado com sucesso!")
+    except Exception as e:
+        print(f"⚠️  AVISO: Não foi possível conectar ao banco de dados PostgreSQL")
+        print(f"   Erro: {str(e)}")
+        print(f"   A aplicação iniciará sem conexão com o banco de dados.")
+        print(f"   Configure o arquivo .env ou variáveis de ambiente para conectar ao banco.")
+        print()

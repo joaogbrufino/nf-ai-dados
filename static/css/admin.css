@@ -27,6 +27,11 @@ nav {
     margin-bottom: 30px;
 }
 
+nav a {
+    text-decoration: none;
+    color: inherit;
+}
+
 nav button {
     background: #fff;
     border: 1px solid #ddd;
