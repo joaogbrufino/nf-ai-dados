@@ -1,8 +1,16 @@
-# 📊 Sistema de Processamento de Notas Fiscais com IA
+<p align="center">
+  <img src="https://www.unirv.edu.br/icones2023/logo_24.png" alt="Logo UniRV"/>
+</p>
+
+<h1 align="center">
+  Processamento de Notas Fiscais com IA
+</h1>
+
+
 
 Sistema completo para processamento inteligente de notas fiscais utilizando Inteligência Artificial (Gemini AI) com recursos de extração de dados, classificação automática e busca inteligente com RAG (Retrieval Augmented Generation).
 
-## 🚀 Funcionalidades
+## Funcionalidades
 
 ### 1. **Processamento de Notas Fiscais**
 - ✅ Upload de PDFs de notas fiscais
@@ -34,7 +42,7 @@ Sistema completo para processamento inteligente de notas fiscais utilizando Inte
 
 ---
 
-## 📋 Tecnologias Utilizadas
+## ecnologias Utilizadas
 
 ### Backend
 - **Python 3.10+**
@@ -54,7 +62,7 @@ Sistema completo para processamento inteligente de notas fiscais utilizando Inte
 
 ---
 
-## 🏗️ Arquitetura do Sistema
+## Arquitetura do Sistema
 
 ```
 ┌─────────────────────────────────────────────────┐
@@ -86,7 +94,7 @@ Sistema completo para processamento inteligente de notas fiscais utilizando Inte
 
 ---
 
-## 🔧 Instalação e Configuração
+##  Instalação e Configuração
 
 ### Opção 1: Docker (Recomendado)
 
